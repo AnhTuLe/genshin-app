@@ -1,0 +1,29 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "Microsoft.EntityFrameworkCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=GenshinDB;User Id=your_user;Password=your_password;TrustServerCertificate=true;"
+  },
+  "CorsOrigins": [
+    "https://yourdomain.com",
+    "https://www.yourdomain.com"
+  ],
+  "JwtSettings": {
+    "SecretKey": "YOUR_VERY_LONG_AND_SECURE_SECRET_KEY_HERE_MIN_32_CHARS",
+    "Issuer": "https://yourdomain.com",
+    "Audience": "https://yourdomain.com",
+    "ExpirationMinutes": 60
+  },
+  "ApiSettings": {
+    "ApiVersion": "v1",
+    "ApiTitle": "Genshin API",
+    "EnableSwagger": false
+  }
+}
+

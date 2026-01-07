@@ -1,0 +1,26 @@
+[Unit]
+Description=Genshin API .NET Core Service
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/share/dotnet/dotnet /var/www/genshin-api/Genshin.API.dll
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=genshin-api
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://localhost:5000
+Environment=DOTNET_ROOT=/usr/share/dotnet
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/genshin-api
+
+[Install]
+WantedBy=multi-user.target
+

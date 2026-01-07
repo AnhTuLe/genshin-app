@@ -14,8 +14,20 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "http://localhost:5173") // Vite default port
-              .AllowAnyHeader()
+        var corsOrigins = builder.Configuration.GetSection("CorsOrigins").Get<string[]>();
+        
+        if (corsOrigins != null && corsOrigins.Length > 0)
+        {
+            // Production: sử dụng origins từ cấu hình
+            policy.WithOrigins(corsOrigins);
+        }
+        else
+        {
+            // Development: cho phép localhost
+            policy.WithOrigins("http://localhost:3000", "http://localhost:5173");
+        }
+        
+        policy.AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
     });
