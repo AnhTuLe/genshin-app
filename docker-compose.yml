@@ -1,6 +1,24 @@
-version: '3.8'
-
 services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Kimchau@1997
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - genshin-network
+    healthcheck:
+      test: sh -c "grep -q 'SQL Server is now ready for client connections' /var/opt/mssql/log/errorlog || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
   backend:
     build:
       context: ./backend
@@ -10,8 +28,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
-    volumes:
-      - ./backend:/app
+    depends_on:
+      sqlserver:
+        condition: service_healthy
     networks:
       - genshin-network
 
@@ -30,3 +49,5 @@ networks:
   genshin-network:
     driver: bridge
 
+volumes:
+  sqlserver_data:
