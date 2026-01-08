@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceArbitrage.Domain", "PriceArbitrage.Domain\PriceArbitrage.Domain.csproj", "{2F178D01-26B5-4340-A3CA-0A188D6C953A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceArbitrage.Application", "PriceArbitrage.Application\PriceArbitrage.Application.csproj", "{D7B15AF5-D6EB-4AA6-A9BC-A862EE709908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceArbitrage.Infrastructure", "PriceArbitrage.Infrastructure\PriceArbitrage.Infrastructure.csproj", "{82B53745-7359-4E8D-839E-8410B6DCE0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceArbitrage.API", "PriceArbitrage.API\PriceArbitrage.API.csproj", "{2658D653-2209-425E-AF0C-B33A7B498C00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F178D01-26B5-4340-A3CA-0A188D6C953A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F178D01-26B5-4340-A3CA-0A188D6C953A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F178D01-26B5-4340-A3CA-0A188D6C953A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F178D01-26B5-4340-A3CA-0A188D6C953A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B15AF5-D6EB-4AA6-A9BC-A862EE709908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B15AF5-D6EB-4AA6-A9BC-A862EE709908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B15AF5-D6EB-4AA6-A9BC-A862EE709908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B15AF5-D6EB-4AA6-A9BC-A862EE709908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82B53745-7359-4E8D-839E-8410B6DCE0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82B53745-7359-4E8D-839E-8410B6DCE0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82B53745-7359-4E8D-839E-8410B6DCE0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82B53745-7359-4E8D-839E-8410B6DCE0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2658D653-2209-425E-AF0C-B33A7B498C00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2658D653-2209-425E-AF0C-B33A7B498C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2658D653-2209-425E-AF0C-B33A7B498C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2658D653-2209-425E-AF0C-B33A7B498C00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -8,7 +8,7 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=GenshinDB;User Id=your_user;Password=your_password;TrustServerCertificate=true;"
+    "DefaultConnection": "Server=localhost;Database=PriceArbitrageDB;User Id=your_user;Password=your_password;TrustServerCertificate=true;"
   },
   "CorsOrigins": [
     "https://yourdomain.com",
@@ -22,7 +22,7 @@
   },
   "ApiSettings": {
     "ApiVersion": "v1",
-    "ApiTitle": "Genshin API",
+    "ApiTitle": "Price Arbitrage API",
     "EnableSwagger": false
   }
 }

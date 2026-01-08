@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Genshin.API.Controllers;
+namespace PriceArbitrage.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
