@@ -28,6 +28,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=PriceArbitrageDB;User Id=sa;Password=Kimchau@1997;TrustServerCertificate=true;
     depends_on:
       sqlserver:
         condition: service_healthy
