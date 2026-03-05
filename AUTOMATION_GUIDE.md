@@ -1,19 +1,34 @@
-# 🤖 Automation Guide - Hướng dẫn Tự động hóa
+# 🤖 Automation Guide – Hướng dẫn Tự động hóa
 
-Hướng dẫn chi tiết về automation trong phát triển phần mềm và cách implement vào dự án React + .NET Core.
+Hướng dẫn automation trong phát triển phần mềm và cách áp dụng vào dự án React + .NET Core.
+
+---
+
+## 🧪 Dành cho Tester: Đi đâu trước?
+
+| Mục tiêu | Đi tới section |
+|----------|----------------|
+| **Roadmap học Automation Test** (từ zero → có thể viết & chạy automation) | [§ Roadmap Automation Test cho Tester](#roadmap-automation-test-cho-tester) |
+| Khái niệm Testing (pyramid, unit/integration/E2E) | [§ 3. Testing Automation](#3-testing-automation) |
+| Công cụ & ví dụ test Backend (.NET) | [§ 3.3. Backend Testing](#33-backend-testing-net-core) |
+| Công cụ & ví dụ test Frontend (React) | [§ 3.4. Frontend Testing](#34-frontend-testing-react) |
+| Đưa test vào pipeline (CI) | [§ 2. CI/CD](#2-cicd---continuous-integration--deployment) |
+
+---
 
 ## 📋 Mục lục
 
 1. [Giới thiệu về Automation](#1-giới-thiệu-về-automation)
-2. [CI/CD - Continuous Integration & Deployment](#2-cicd---continuous-integration--deployment)
+2. [CI/CD – Continuous Integration & Deployment](#2-cicd---continuous-integration--deployment)
 3. [Testing Automation](#3-testing-automation)
 4. [Code Quality Automation](#4-code-quality-automation)
 5. [Build & Release Automation](#5-build--release-automation)
 6. [Monitoring & Alerting Automation](#6-monitoring--alerting-automation)
 7. [Infrastructure as Code (IaC)](#7-infrastructure-as-code-iac)
 8. [DevOps Tools Stack](#8-devops-tools-stack)
-9. [Roadmap Học Automation](#9-roadmap-học-automation)
+9. [Roadmap Automation Test cho Tester](#roadmap-automation-test-cho-tester)
 10. [Best Practices](#10-best-practices)
+11. [Tài liệu tham khảo](#-tài-liệu-tham-khảo)
 
 ---
 
@@ -645,129 +660,158 @@ resource "aws_instance" "web" {
 
 ---
 
-## 9. Roadmap Học Automation
+<a id="roadmap-automation-test-cho-tester"></a>
 
-### Phase 1: CI/CD Basics (2-3 tuần)
+## 9. Roadmap Automation Test cho Tester
 
-**Mục tiêu**: Hiểu và setup CI/CD pipeline cơ bản
+Roadmap này dành cho **tester** muốn học automation test từ nền tảng đến có thể viết script, đưa vào CI và mở rộng sang API/E2E.
 
-**Học:**
-- [ ] GitHub Actions cơ bản
-- [ ] YAML syntax
-- [ ] Workflow triggers (push, PR, schedule)
-- [ ] Jobs và steps
-- [ ] Artifacts và caching
+**Ước lượng tổng:** ~10–16 tuần (tuỳ tốc độ và thời gian dành mỗi ngày). Có thể rút ngắn nếu đã biết lập trình cơ bản.
 
-**Thực hành:**
-- [ ] Setup CI pipeline cho dự án hiện tại
-- [ ] Tự động build Frontend và Backend
-- [ ] Tự động chạy tests (nếu có)
+---
 
-**Tài liệu:**
-- GitHub Actions Documentation
-- YouTube: "GitHub Actions Tutorial"
+### Tổng quan roadmap
 
-### Phase 2: Testing Automation (3-4 tuần)
+| Phase | Nội dung | Thời gian gợi ý | Deliverable |
+|-------|----------|------------------|-------------|
+| 0 | Nền tảng (manual + test design) | 1–2 tuần | Test cases rõ ràng, hiểu pyramid |
+| 1 | Programming & automation cơ bản | 2–3 tuần | Script đơn giản (API hoặc UI) |
+| 2 | API Automation | 2–3 tuần | Bộ test API chạy được local + trong CI |
+| 3 | UI / E2E Automation | 3–4 tuần | E2E flow chính chạy ổn định |
+| 4 | CI & reporting | 1–2 tuần | Pipeline chạy test + report |
+| 5 | Nâng cao (tuỳ chọn) | 2–4 tuần | Pattern, framework, maintainability |
 
-**Mục tiêu**: Viết và tự động hóa tests
+---
 
-**Học:**
-- [ ] Unit testing concepts
-- [ ] Testing frameworks (xUnit, Vitest)
-- [ ] Mocking và stubbing
-- [ ] Test coverage
-- [ ] Integration testing
+### Phase 0: Nền tảng (Manual + Test design)
 
-**Thực hành:**
-- [ ] Viết unit tests cho Backend
-- [ ] Viết component tests cho Frontend
-- [ ] Setup test coverage reporting
-- [ ] Tích hợp tests vào CI pipeline
+**Mục tiêu:** Vững cách nghĩ test, biết test cái gì trước khi automation.
 
-**Tài liệu:**
-- xUnit documentation
-- Testing Library documentation
-- "The Art of Unit Testing" book
+- [ ] **Test design:** Biết viết test case (Given-When-Then hoặc steps rõ ràng).
+- [ ] **Test pyramid:** Hiểu Unit vs Integration vs E2E (xem [§ 3. Testing Automation](#3-testing-automation)).
+- [ ] **Ưu tiên:** Biết chọn test nào nên automate trước (critical path, regression, lặp lại nhiều).
+- [ ] **Bug & environment:** Quen report bug, biết môi trường dev/staging (URL, data test).
 
-### Phase 3: Code Quality (2-3 tuần)
+**Không cần code** – chỉ cần thói quen phân tích và ghi rõ kịch bản test.
 
-**Mục tiêu**: Tự động kiểm tra code quality
+---
+
+### Phase 1: Programming & Automation cơ bản
+
+**Mục tiêu:** Đủ kiến thức lập trình để đọc/viết test script (không cần thành dev).
 
 **Học:**
-- [ ] ESLint và Prettier
-- [ ] Git hooks (Husky)
-- [ ] SonarQube/SonarCloud
-- [ ] Code review automation
+
+- [ ] **Ngôn ngữ:** Chọn **một** hướng phù hợp dự án:
+  - **Backend/.NET:** C# cơ bản (biến, if/loop, class, method).
+  - **Frontend/React:** JavaScript hoặc TypeScript cơ bản (biến, function, async).
+- [ ] **CLI:** Chạy lệnh trong terminal (mở folder project, chạy `dotnet test` hoặc `npm test`).
+- [ ] **Git cơ bản:** clone, pull, branch, commit (để đưa test code vào repo và CI).
 
 **Thực hành:**
-- [ ] Setup ESLint cho Frontend
-- [ ] Setup Prettier
-- [ ] Setup pre-commit hooks
-- [ ] Tích hợp SonarCloud vào CI
 
-**Tài liệu:**
-- ESLint documentation
-- SonarCloud getting started
+- [ ] Chạy bộ test có sẵn của dự án (Backend: xUnit, Frontend: Vitest/Jest).
+- [ ] Sửa 1 test có sẵn (đổi expected, tên test) và chạy lại.
+- [ ] Viết 1 test mới đơn giản (ví dụ: gọi 1 API bằng tool Postman/Insomnia, rồi chuyển thành 1 script test).
 
-### Phase 4: Deployment Automation (3-4 tuần)
+**Tài liệu gợi ý:**
 
-**Mục tiêu**: Tự động deploy ứng dụng
+- C#: Microsoft Learn “C# for Beginners”.
+- JS/TS: freeCodeCamp hoặc “JavaScript.info”.
+- Git: “Pro Git” (free online).
+
+---
+
+### Phase 2: API Automation
+
+**Mục tiêu:** Có bộ test API ổn định, chạy local và trong CI.
 
 **Học:**
-- [ ] Deployment strategies (blue-green, canary)
-- [ ] Environment management
-- [ ] Secrets management
-- [ ] Rollback strategies
+
+- [ ] **HTTP cơ bản:** Method (GET/POST/PUT/DELETE), status code, header, body (JSON).
+- [ ] **Công cụ hoặc thư viện (chọn một hướng):**
+  - **.NET:** xUnit + `HttpClient` hoặc RestSharp; hoặc Postman → export/Newman.
+  - **Node/JS:** Vitest/Jest + `fetch` hoặc axios; hoặc Postman/Newman.
+- [ ] **Assertions:** So sánh status code, body (JSON), thời gian phản hồi nếu cần.
+- [ ] **Data & environment:** Dùng config (base URL, token) qua env hoặc config file, không hardcode.
 
 **Thực hành:**
-- [ ] Setup CD pipeline
-- [ ] Deploy lên staging
-- [ ] Deploy lên production (với approval)
-- [ ] Health checks và rollback
 
-**Tài liệu:**
-- Deployment strategies
-- GitHub Environments documentation
+- [ ] Viết 3–5 test API cho các endpoint quan trọng (login, CRUD chính).
+- [ ] Test pass/fail ổn định khi chạy nhiều lần (không phụ thuộc thứ tự hoặc data tạm).
+- [ ] Chạy được bằng lệnh: `dotnet test` hoặc `npm run test:api`.
 
-### Phase 5: Monitoring & Observability (2-3 tuần)
+**Tài liệu:** xUnit docs, RestSharp/HttpClient, Postman Learning Center.
 
-**Mục tiêu**: Setup monitoring và alerting
+---
+
+### Phase 3: UI / E2E Automation
+
+**Mục tiêu:** Tự động được vài flow E2E chính (đăng nhập, flow nghiệp vụ quan trọng).
 
 **Học:**
-- [ ] Application logging
-- [ ] Metrics collection
-- [ ] Error tracking (Sentry)
-- [ ] Alerting rules
+
+- [ ] **E2E là gì:** Chạy trên browser, mô phỏng user (click, nhập, chờ element).
+- [ ] **Công cụ (chọn một):**
+  - **Playwright** (khuyến nghị): cài, viết script, chạy headless/headed.
+  - **Cypress:** nếu team đã dùng.
+- [ ] **Selector:** ID, class, data-testid, text; tránh selector dễ vỡ (quá phụ thuộc CSS phức tạp).
+- [ ] **Wait:** Chờ element visible/clickable thay vì sleep cố định.
+- [ ] **Page Object (sơ bộ):** Tách selector và action theo từng màn hình để dễ bảo trì.
 
 **Thực hành:**
-- [ ] Setup structured logging
-- [ ] Setup Sentry cho error tracking
-- [ ] Setup uptime monitoring
-- [ ] Configure alerts
 
-**Tài liệu:**
-- Sentry documentation
-- Prometheus documentation
+- [ ] 1 test: mở app → login → kiểm tra vào được dashboard (hoặc trang chính).
+- [ ] 1 test: flow nghiệp vụ chính (ví dụ: tạo đơn, xem danh sách).
+- [ ] Chạy ổn định trên 1 browser (Chrome hoặc Chromium); sau có thể mở rộng.
 
-### Phase 6: Advanced Topics (4-6 tuần)
+**Tài liệu:** Playwright docs, Cypress docs, “Test Automation University” (free).
 
-**Mục tiêu**: Học các chủ đề nâng cao
+---
+
+### Phase 4: Đưa test vào CI & báo cáo
+
+**Mục tiêu:** Mỗi lần push/PR, test tự chạy và có kết quả rõ ràng.
 
 **Học:**
-- [ ] Infrastructure as Code (Terraform)
-- [ ] Kubernetes basics
-- [ ] Service Mesh
-- [ ] Chaos Engineering
-- [ ] Advanced CI/CD patterns
+
+- [ ] **CI cơ bản:** Workflow chạy khi push/PR (xem [§ 2. CI/CD](#2-cicd---continuous-integration--deployment)).
+- [ ] **GitHub Actions (hoặc GitLab CI):** Cấu hình job chạy `dotnet test` / `npm run test` / `npx playwright test`.
+- [ ] **Artifacts:** Lưu report (JUnit XML, HTML, screenshot khi fail) và xem trong CI.
+- [ ] **Branch protection:** Merge chỉ khi CI pass (do team/lead cấu hình).
 
 **Thực hành:**
-- [ ] Define infrastructure với Terraform
-- [ ] Deploy lên Kubernetes
-- [ ] Setup service mesh
 
-**Tài liệu:**
-- Terraform documentation
-- Kubernetes official docs
+- [ ] Tạo workflow chạy API tests mỗi khi push vào `main` (hoặc develop).
+- [ ] Thêm bước chạy E2E (có thể chạy ít hơn, ví dụ chỉ khi merge vào `main`).
+- [ ] Mở report (HTML hoặc screenshot) khi test fail để debug.
+
+**Tài liệu:** GitHub Actions docs, GitLab CI docs.
+
+---
+
+### Phase 5: Nâng cao (tuỳ chọn)
+
+**Mục tiêu:** Dễ bảo trì, mở rộng và hợp tác với dev.
+
+- [ ] **Framework/pattern:** Page Object rõ ràng, shared fixtures, config theo environment.
+- [ ] **Data:** Test data tách riêng (file JSON/CSV), có thể dùng fake data (Faker).
+- [ ] **Parallel & speed:** Chạy test song song (theo tool), giảm thời gian E2E.
+- [ ] **Reporting:** Allure, ReportPortal hoặc report custom (screenshot + log).
+- [ ] **API + UI kết hợp:** Setup trạng thái qua API rồi E2E chỉ verify UI (nhanh hơn).
+
+---
+
+### Checklist tổng cho Tester
+
+- [ ] Phase 0: Test design & pyramid rõ ràng.
+- [ ] Phase 1: Chạy và sửa/viết 1 test đơn giản.
+- [ ] Phase 2: Có bộ API tests, chạy local + trong CI.
+- [ ] Phase 3: Có ít nhất 1–2 E2E flow ổn định.
+- [ ] Phase 4: CI chạy test tự động và có report.
+- [ ] Phase 5 (tuỳ chọn): Cấu trúc và báo cáo tốt hơn.
+
+**Gợi ý:** Làm song song với dự án thật (React + .NET của repo này). Bắt đầu từ API (Phase 2) thường nhanh có giá trị hơn E2E (Phase 3).
 
 ---
 
@@ -837,11 +881,17 @@ resource "aws_instance" "web" {
 
 ## 🎯 Bước tiếp theo
 
-1. **Đọc kỹ guideline này** - Hiểu các concepts
-2. **Chọn một area để bắt đầu** - Khuyến nghị: CI/CD
-3. **Setup môi trường** - GitHub Actions đã sẵn sàng
-4. **Thực hành với dự án hiện tại** - Bắt đầu từ đơn giản
-5. **Học từ từ** - Đừng cố làm hết mọi thứ cùng lúc
+**Nếu bạn là Tester:**
 
-**Remember**: Automation là một journey, không phải destination. Bắt đầu từ những gì bạn cần nhất!
+1. Đọc [Roadmap Automation Test cho Tester](#roadmap-automation-test-cho-tester) và chọn phase phù hợp level hiện tại.
+2. Ưu tiên **Phase 0 + Phase 2 (API Automation)** để nhanh có giá trị.
+3. Dùng chính dự án React + .NET trong repo này để thực hành (chạy test, viết thêm API test, rồi CI).
+
+**Nếu bạn đảm nhiệm cả DevOps/automation chung:**
+
+1. Bắt đầu với CI/CD (section 2), sau đó Testing (section 3) và Code Quality (section 4).
+2. Setup môi trường: GitHub Actions, chạy test trong pipeline.
+3. Mở rộng dần: deployment, monitoring (sections 5–6).
+
+**Nhớ:** Automation là quá trình tích lũy, không cần làm hết mọi thứ cùng lúc. Ưu tiên theo vai trò (tester vs devops) và nhu cầu dự án.
 
